@@ -244,7 +244,22 @@ The emotion-based ad group consistently outperformed others across all vaccine h
 
 ➤ This suggests emotional messaging is effective even among skeptical populations
 
-6. Network Influence on Behavior
+6.  Network Behavior Visualization
+
+![Subnetwork Vaccination Spread](outputs/network_graph_sample.png)
+
+This subgraph visualizes a random sample of 100 participants from the larger simulated social network.
+
+- **Blue nodes** represent participants who got vaccinated.
+- **Gray nodes** represent those who did not.
+- Nodes are connected if they share a simulated "social tie."
+
+ **Key Insight**:
+Clusters of vaccinated individuals emerge naturally, even in a randomly generated network (Erdős–Rényi model), suggesting that **social clustering** may play a role in behavior diffusion — even when assignment is random.
+
+This underscores the importance of targeting central figures or leveraging social reinforcement in public health messaging.
+
+7. Network Influence on Behavior
 
 ![Centrality vs Uptake](outputs/network_centrality_vs_uptake.png)
 
@@ -258,7 +273,7 @@ Participants with higher degree centrality in the simulated network were more li
 Uptake varied by community, indicating that social clusters may shape vaccine behaviors even in randomized designs.
 
 
-7. Trust and Political Affiliation
+8. Trust and Political Affiliation
 
 ![Trust Boxplot](outputs/trust_vs_uptake_boxplot.png)  
 
@@ -272,13 +287,6 @@ Uptake was relatively balanced across political groups, though Liberals and Mode
 
 ➤ The ads had impact across ideological lines, showing broad effectiveness.
 
-
-Overall Takeaways
-Emotion-based ads were consistently the most effective across all metrics: uptake, attitude, and cross-demographics.
-
-Statistical models confirmed significant treatment effects, and network features added an extra layer of realism and insight.
-
-This simulation successfully mirrors the kind of behavioral response seen in real-world public health campaigns.
 
 ##  Dependencies
 
