@@ -1,0 +1,4 @@
+ad_group,total,vaccinated,vaccination_rate,type
+Ad_Emotion,1472,961,0.6528532608695652,ITT
+Ad_Reason,1562,935,0.5985915492957746,ITT
+Control,1466,732,0.49931787175989084,ITT

@@ -1,0 +1,2 @@
+T-test on centrality:
+t = 2.0046, p = 0.0451
