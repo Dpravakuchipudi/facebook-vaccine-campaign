@@ -37,7 +37,8 @@ respondents = assignment_df.sample(n=4500, random_state=42).copy()
 
 def simulate_vaccine_uptake(group: str) -> int:
     """
-    Simulates vaccine uptake using group-specific probabilities.
+    Simulate vaccine uptake (1 = vaccinated, 0 = not) 
+    using group-specific probabilities.
     """
     uptake_probs = {
         'Control': 0.50,
@@ -54,8 +55,8 @@ respondents["vaccine_uptake"] = respondents["ad_group"].apply(simulate_vaccine_u
 
 def simulate_post_attitude(group: str) -> int:
     """
-    Simulates post-campaign attitude scores using group-specific means.
-    Returns integer values on a 1–5 Likert scale.
+    Simulate post-campaign attitude score (1–5) using 
+    group-specific mean and clipped normal distribution.
     """
     mean_scores = {
         'Control': 3.0,
@@ -68,10 +69,25 @@ def simulate_post_attitude(group: str) -> int:
 respondents["post_attitude_score"] = respondents["ad_group"].apply(simulate_post_attitude)
 
 # ----------------------------------------
+# Build Final Endline Dataset
+# ----------------------------------------
+
+# Include ad_group for transparency and analysis
+endline_df = respondents[["participant_id", "ad_group", "vaccine_uptake", "post_attitude_score"]]
+
+# ----------------------------------------
+# Sanity Check Summary
+# ----------------------------------------
+
+assert respondents['participant_id'].is_unique, "Duplicate participant IDs in endline data!"
+
+print("\n📊 Endline Summary Stats:")
+print("Vaccine Uptake:\n", endline_df["vaccine_uptake"].value_counts())
+print("\nPost-Attitude Score Distribution:\n", endline_df["post_attitude_score"].value_counts().sort_index())
+
+# ----------------------------------------
 # Save Simulated Endline Data
 # ----------------------------------------
 
-endline_df = respondents[["participant_id", "vaccine_uptake", "post_attitude_score"]]
 endline_df.to_csv("data/endline_data.csv", index=False)
-
-print("✅ Endline data simulated and saved to data/endline_data.csv")
+print("\n Endline data simulated and saved to data/endline_data.csv")

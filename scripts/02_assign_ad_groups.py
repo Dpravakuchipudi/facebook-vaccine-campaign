@@ -47,8 +47,22 @@ assignment_df = pd.DataFrame({
 })
 
 # ----------------------------------------
+# Sanity Checks & Summary
+# ----------------------------------------
+
+# Ensure participant IDs are unique
+assert assignment_df['participant_id'].is_unique, "Duplicate participant IDs found!"
+
+# Display distribution of assigned groups
+print("\n📊 Ad Group Assignment Summary:")
+print(assignment_df['ad_group'].value_counts())
+
+# Optional: sort for readability
+assignment_df = assignment_df.sort_values('participant_id').reset_index(drop=True)
+
+# ----------------------------------------
 # Save Assigned Groups to File
 # ----------------------------------------
 
 assignment_df.to_csv("data/assignment_data.csv", index=False)
-print("✅ Ad group assignment complete. Saved to data/assignment_data.csv")
+print("\n Ad group assignment complete. Saved to data/assignment_data.csv")

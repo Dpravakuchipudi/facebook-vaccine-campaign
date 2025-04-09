@@ -46,10 +46,9 @@ nx.set_node_attributes(G, merged.set_index("participant_id")["ad_group"].to_dict
 # Degree Centrality
 # ----------------------------------------
 
-# Compute centrality and merge into data
 centrality = nx.degree_centrality(G)
-merged["degree_centrality"] = merged["participant_id"].map(centrality)
-merged.to_csv("outputs/merged_with_centrality.csv", index=False)
+merged["degree_centrality"] = merged["participant_id"].map(centrality).fillna(0)
+merged.to_csv("outputs/network_merged_with_centrality.csv", index=False)
 
 # ----------------------------------------
 # Boxplot: Centrality vs Vaccine Uptake
@@ -76,6 +75,10 @@ with open("outputs/network_centrality_ttest.txt", "w") as f:
     f.write(f"T-test on centrality:\nt = {t_stat:.4f}, p = {p_val:.4f}\n")
 
 print(f"\n📊 T-test on centrality:\nt = {t_stat:.4f}, p = {p_val:.4f}")
+if p_val < 0.05:
+    print("✅ Centrality is significantly associated with vaccine uptake.")
+else:
+    print("ℹ️ No significant difference in centrality between groups.")
 
 # ----------------------------------------
 # Community Detection using Greedy Modularity
@@ -85,8 +88,11 @@ print("\n🔍 Detecting communities using modularity optimization...")
 communities = list(greedy_modularity_communities(G))
 community_map = {node: i for i, group in enumerate(communities) for node in group}
 merged["community_id"] = merged["participant_id"].map(community_map)
-merged.to_csv("outputs/merged_with_communities.csv", index=False)
 
+# Sanity check
+assert merged["community_id"].isnull().sum() == 0, "❌ Some participants not assigned to a community!"
+
+merged.to_csv("outputs/network_merged_with_communities.csv", index=False)
 print(f"📎 Detected {len(communities)} communities.")
 
 # ----------------------------------------
@@ -101,7 +107,7 @@ plt.title("Distribution of Vaccine Uptake by Community")
 plt.xlabel("Average Uptake Rate per Community")
 plt.ylabel("Number of Communities")
 plt.tight_layout()
-plt.savefig("outputs/vaccine_uptake_by_community.png")
+plt.savefig("outputs/network_vaccine_uptake_by_community.png")
 plt.close()
 
 # ----------------------------------------

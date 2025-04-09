@@ -33,9 +33,13 @@ np.random.seed(42)
 # Load and Merge Data
 # ----------------------------------------
 
-baseline = pd.read_csv("data/baseline_data.csv")
-assignment = pd.read_csv("data/assignment_data.csv")
-endline = pd.read_csv("data/endline_data.csv")
+try:
+    baseline = pd.read_csv("data/baseline_data.csv")
+    assignment = pd.read_csv("data/assignment_data.csv")
+    endline = pd.read_csv("data/endline_data.csv")
+except FileNotFoundError as e:
+    print(f"❌ Missing file: {e}")
+    exit(1)
 
 # Clean IDs
 for df in [baseline, assignment, endline]:
@@ -76,7 +80,7 @@ compare_df = pd.concat([
 
 # Plot ITT vs TOT comparison
 plt.figure(figsize=(8, 5))
-sns.barplot(data=compare_df, x="ad_group", y="vaccination_rate", hue="type", palette="muted")
+sns.barplot(data=compare_df, x="ad_group", y="vaccination_rate", hue="type", palette="Set2")
 plt.title("Intention-to-Treat vs Treatment-on-the-Treated")
 plt.ylabel("Vaccination Rate")
 plt.ylim(0, 1)
@@ -93,12 +97,13 @@ print("\n✅ ITT and TOT analysis complete.")
 summary = merged.groupby("ad_group")["vaccine_uptake"].agg(["count", "sum", "mean"]).reset_index()
 summary.columns = ["ad_group", "total", "vaccinated", "vaccination_rate"]
 summary.to_csv("outputs/vaccination_summary.csv", index=False)
+
 print("\n📊 Vaccination Rates by Ad Group:")
 print(summary)
 
 # Plot vaccine uptake
 plt.figure(figsize=(8, 5))
-sns.barplot(data=summary, x="ad_group", y="vaccination_rate", palette="pastel")
+sns.barplot(data=summary, x="ad_group", y="vaccination_rate", palette="Set3")
 plt.title("Vaccine Uptake by Ad Group")
 plt.ylabel("Vaccination Rate")
 plt.ylim(0, 1)
@@ -109,6 +114,8 @@ plt.close()
 # ----------------------------------------
 # Attitude Change Analysis
 # ----------------------------------------
+
+attitude_summary = None
 
 if "baseline_attitude_score" in merged.columns and "post_attitude_score" in merged.columns:
     merged["attitude_change"] = merged["post_attitude_score"] - merged["baseline_attitude_score"]
@@ -121,7 +128,7 @@ if "baseline_attitude_score" in merged.columns and "post_attitude_score" in merg
 
     # Boxplot
     plt.figure(figsize=(8, 5))
-    sns.boxplot(data=merged, x="ad_group", y="attitude_change", palette="Set3")
+    sns.boxplot(data=merged, x="ad_group", y="attitude_change", palette="coolwarm")
     plt.title("Attitude Change by Ad Group")
     plt.ylabel("Post - Baseline Attitude Score")
     plt.tight_layout()
@@ -139,6 +146,7 @@ chi2, p, dof, _ = stats.chi2_contingency(contingency)
 print("\n📊 Chi-Square Test Results:")
 print(f"Chi2 = {chi2:.2f}, p-value = {p:.4f}, dof = {dof}")
 
+# Save chi-square result
 with open("outputs/chi_square_results.txt", "w") as f:
     f.write(f"Chi2 = {chi2:.2f}, p = {p:.4f}, dof = {dof}\n")
 
@@ -153,7 +161,7 @@ plt.figure(figsize=(8, 5))
 sns.lineplot(data=hesitancy_summary, x="hesitancy_group", y="vaccine_uptake", hue="ad_group", marker="o")
 plt.title("Uptake by Hesitancy Score and Ad Group")
 plt.xlabel("Hesitancy Score")
-plt.ylabel("Vaccine Uptake Rate")
+plt.ylabel("Vaccination Rate")
 plt.ylim(0, 1)
 plt.tight_layout()
 plt.savefig("outputs/uptake_by_hesitancy_adgroup.png")
@@ -193,9 +201,27 @@ plt.close()
 print("\n📈 Logistic Regression: Ad Group + Hesitancy + Trust in Science")
 logit_model = smf.logit("vaccine_uptake ~ C(ad_group) + vaccine_hesitancy + trust_in_science", data=merged).fit()
 print(logit_model.summary())
+pseudo_r2 = 1 - logit_model.llf / logit_model.llnull
+print(f"Pseudo R²: {pseudo_r2:.4f}")
 
 with open("outputs/logistic_summary.txt", "w") as f:
     f.write(logit_model.summary().as_text())
+    f.write(f"\n\nPseudo R²: {pseudo_r2:.4f}")
+
+# ----------------------------------------
+# Summary Report
+# ----------------------------------------
+
+with open("outputs/summary_report.txt", "w") as f:
+    f.write("=== Vaccination Summary ===\n")
+    f.write(summary.to_string(index=False))
+    f.write("\n\n=== Attitude Change Summary ===\n")
+    if attitude_summary is not None:
+        f.write(attitude_summary.to_string(index=False))
+    else:
+        f.write("Skipped — baseline or post-campaign scores missing.\n")
+    f.write(f"\n\n=== Chi-Square Test ===\nChi2 = {chi2:.2f}, p = {p:.4f}, dof = {dof}\n")
+    f.write(f"\n\n=== Logistic Regression Pseudo R² ===\nPseudo R² = {pseudo_r2:.4f}\n")
 
 # ----------------------------------------
 # Combined Summary Visualization (2x2)
@@ -205,7 +231,7 @@ fig, axes = plt.subplots(2, 2, figsize=(14, 10))
 fig.suptitle("Effectiveness of Facebook Ads on Vaccine Uptake", fontsize=16)
 
 # Bar
-sns.barplot(ax=axes[0, 0], data=summary, x="ad_group", y="vaccination_rate", palette="pastel")
+sns.barplot(ax=axes[0, 0], data=summary, x="ad_group", y="vaccination_rate", palette="Set3")
 axes[0, 0].set_title("Vaccination Rate by Ad Group")
 axes[0, 0].set_ylim(0, 1)
 

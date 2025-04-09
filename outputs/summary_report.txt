@@ -1,0 +1,18 @@
+=== Vaccination Summary ===
+  ad_group  total  vaccinated  vaccination_rate
+Ad_Emotion   1472         961          0.652853
+ Ad_Reason   1562         935          0.598592
+   Control   1466         732          0.499318
+
+=== Attitude Change Summary ===
+  ad_group  avg_attitude_change
+Ad_Emotion             0.554348
+ Ad_Reason             0.219590
+   Control            -0.027285
+
+=== Chi-Square Test ===
+Chi2 = 73.37, p = 0.0000, dof = 2
+
+
+=== Logistic Regression Pseudo R² ===
+Pseudo R² = 0.0129

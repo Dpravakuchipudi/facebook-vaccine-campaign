@@ -27,7 +27,7 @@ participant_ids = [f"P{i:05d}" for i in range(1, N_PARTICIPANTS + 1)]
 
 age = np.clip(
     np.random.normal(loc=40, scale=12, size=N_PARTICIPANTS).astype(int),
-    18, 85  # constrain age between 18 and 85
+    18, 85
 )
 
 gender = np.random.choice(
@@ -90,8 +90,28 @@ baseline_df = pd.DataFrame({
 })
 
 # ----------------------------------------
+# Optional: Convert Likert responses to ordinal types
+# ----------------------------------------
+
+likert_vars = ['vaccine_hesitancy', 'trust_in_science', 'trust_in_government', 'baseline_attitude_score']
+for col in likert_vars:
+    baseline_df[col] = pd.Categorical(baseline_df[col], categories=[1, 2, 3, 4, 5], ordered=True)
+
+# ----------------------------------------
+# Sanity Checks: Print value distributions
+# ----------------------------------------
+
+print("\n🔍 Sample Distribution Checks:")
+print("Gender distribution:\n", baseline_df["gender"].value_counts())
+print("\nRace/Ethnicity distribution:\n", baseline_df["race_ethnicity"].value_counts())
+print("\nEducation level distribution:\n", baseline_df["education_level"].value_counts())
+print("\nPolitical affiliation distribution:\n", baseline_df["political_affiliation"].value_counts())
+print("\nVaccine hesitancy (ordinal):\n", baseline_df["vaccine_hesitancy"].value_counts().sort_index())
+print("\nTrust in science (ordinal):\n", baseline_df["trust_in_science"].value_counts().sort_index())
+
+# ----------------------------------------
 # Save to CSV
 # ----------------------------------------
 
 baseline_df.to_csv("data/baseline_data.csv", index=False)
-print("✅ Baseline data generated and saved to data/baseline_data.csv")
+print("\n✅ Baseline data generated and saved to data/baseline_data.csv")
