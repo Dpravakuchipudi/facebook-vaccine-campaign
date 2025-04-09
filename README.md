@@ -163,6 +163,7 @@ The following outputs are generated during the execution of the analysis pipelin
 ### Summary of Key Findings
 
 
+
 ![Summary Visuals](outputs/summary_visuals_combined.png)
 
 Vaccination Rates by Ad Type
@@ -191,54 +192,93 @@ All political groups (liberal, moderate, conservative) showed similar vaccinatio
 
 
 
-![Uptake by Group](outputs/vaccine_uptake_by_ad_group.png) ![Attitude Change](outputs/attitude_change_by_group.png)
+1. Vaccine Uptake by Ad Type
 
-Campaign Effectiveness : 
-Ad_Emotion was the most effective strategy:
-1. 65.3% uptake rate
-2. Showed the highest average increase in attitude towards vaccination.
+![Uptake by Group](outputs/vaccine_uptake_by_ad_group.png) 
 
-Ad_Reason also outperformed the control group:
-1. 59.8% uptake rate
-2. Moderate attitude improvement.
+The Ad_Emotion group had the highest vaccine uptake (65.3%), followed by Ad_Reason (59.8%) and the Control group (49.9%).
 
-Control group had the lowest uptake at 49.9% and a slight negative shift in attitude.
+This suggests that emotionally persuasive content is more effective in driving health behavior than purely informational or no messaging.
 
+2. Change in Vaccine Attitudes
 
+![Attitude Change](outputs/attitude_change_by_group.png)
 
-![Logistic Model](outputs/logistic_summary.txt) ![ITT vs TOT](outputs/itt_vs_tot_comparison.png)
+Participants exposed to the emotional ad showed the greatest positive shift in vaccine attitudes (mean change ≈ +0.55).
 
-A Chi-square test confirmed that differences in uptake between groups are statistically significant (χ² = 73.37, p < 0.001).
+The reason ad showed a moderate improvement (+0.22), while the control group showed a slight decline (−0.03).
 
-A logistic regression showed:
-
-Belonging to the Control or Ad_Reason group decreased the odds of vaccination relative to the Ad_Emotion group.
-
-Vaccine hesitancy had a small positive coefficient, indicating those more hesitant may still be persuaded.
-
-Trust in science was not a significant predictor in the model.
+➤ Emotional content not only influenced behavior but also improved perceptions.
 
 
-[Attitude Change](outputs/attitude_change_by_group.png)
+3. Intention-to-Treat (ITT) vs Treatment-on-the-Treated (TOT)
 
-Participants exposed to emotion-based messaging showed the greatest positive shift in attitude scores (mean change ≈ +0.55).
-
-Control group participants slightly regressed.
+![ITT vs TOT](outputs/itt_vs_tot_comparison.png)
 
 
-![Centrality vs Uptake](outputs/network_centrality_vs_uptake.png)  ![Community Histogram](outputs/vaccine_uptake_by_community.png)  
+Both ITT and TOT analyses confirm that exposure to ads significantly increased vaccine uptake.
 
-Participants with higher degree centrality in the simulated network were significantly more likely to be vaccinated (t = 2.00, p = 0.045).
+Exposure-adjusted (TOT) rates were even higher, suggesting that actual engagement with the ad matters.
 
-Uptake varied by community, highlighting the non-random clustering effects in behavior adoption.
+4. Statistical Significance & Predictive Modeling
+
+Chi-Square Test
+
+χ² = 73.37, p < 0.001 → differences in uptake across groups are highly significant.
 
 
+![Logistic Regression Summary](outputs/logistic_summary.txt) 
 
-![Trust Boxplot](outputs/trust_vs_uptake_boxplot.png)   ![Political Uptake](outputs/uptake_by_political_affiliation.png)
+Predictor	Coefficient	p-value	Interpretation
+Ad_Reason	−0.23	0.002	Lower odds than Ad_Emotion
+Control	−0.63	< 0.001	Much lower odds than Ad_Emotion
+Vaccine Hesitancy	+0.05	0.028	Slight positive predictor
+Trust in Science	NS	0.499	Not statistically significant
+➤ Being in the Ad_Emotion group significantly increased odds of vaccination..
 
-People with higher trust in science had slightly higher uptake, but this was not significant in regression.
 
-Liberals and Moderates were more likely to vaccinate than Conservatives.
+5. Vaccine Uptake Across Hesitancy Levels
+![Hesitancy Lineplot](outputs/uptake_by_hesitancy_adgroup.png)
+
+The emotion-based ad group consistently outperformed others across all vaccine hesitancy levels.
+
+➤ This suggests emotional messaging is effective even among skeptical populations
+
+6. Network Influence on Behavior
+
+![Centrality vs Uptake](outputs/network_centrality_vs_uptake.png)
+
+Participants with higher degree centrality in the simulated network were more likely to vaccinate (t = 2.00, p = 0.045).
+
+➤ Peer influence or connectivity may play a role in behavior spread.
+
+
+![Community Histogram](outputs/vaccine_uptake_by_community.png)  
+
+Uptake varied by community, indicating that social clusters may shape vaccine behaviors even in randomized designs.
+
+
+7. Trust and Political Affiliation
+
+![Trust Boxplot](outputs/trust_vs_uptake_boxplot.png)  
+
+Those who trusted science more were slightly more likely to vaccinate, but trust alone wasn't significant in the regression model.
+
+➤ Framing and delivery of the message are more influential than trust level alone.
+
+![Political Uptake](outputs/uptake_by_political_affiliation.png)
+
+Uptake was relatively balanced across political groups, though Liberals and Moderates were slightly more likely to vaccinate.
+
+➤ The ads had impact across ideological lines, showing broad effectiveness.
+
+
+Overall Takeaways
+Emotion-based ads were consistently the most effective across all metrics: uptake, attitude, and cross-demographics.
+
+Statistical models confirmed significant treatment effects, and network features added an extra layer of realism and insight.
+
+This simulation successfully mirrors the kind of behavioral response seen in real-world public health campaigns.
 
 ##  Dependencies
 
@@ -271,16 +311,6 @@ pip install -r requirements.txt
 
 ---
 
-##  Why This Project Matters
-
-This project showcases how **experimental design**, **data simulation**, and **causal analysis** can work hand-in-hand. It demonstrates:
-
-- Strong skills in **data generation, cleaning, and merging**
-- Application of **statistical modeling** and **inference**
-- Integration of **network science** with behavioral analytics
-- Clean, reproducible code structure suitable for academic, policy, or product evaluation use cases
-
----
 
 ##  Author
 
