@@ -11,7 +11,9 @@ This repository presents a comprehensive pipeline for a **simulated field experi
 
 ---
 
-## 🎯 Objective
+
+
+##  Objective
 
 This task involves simulating a randomized field experiment designed to evaluate the effectiveness of two Facebook ad strategies—one appealing to **reason**, the other to **emotion**—in increasing COVID-19 vaccine uptake across a sample of 5,000 individuals in the United States.
 
@@ -25,7 +27,7 @@ All participants completed a **baseline survey**, and 4,500 completed an **endli
 
 ---
 
-## 🧪 Experimental Design
+##  Experimental Design
 
 The task simulates a randomized controlled trial with the following setup:
 
@@ -79,46 +81,58 @@ All analyses are accompanied by clear **tables, visualizations**, and **statisti
 
 ##  Folder Structure
 
-```
-facebook-vaccine-campaign/
-├── data/                    # Simulated CSV datasets
-├── outputs/                 # All visualizations & result tables
-├── scripts/                 # Modular Python scripts for each analysis step
-├── run_pipeline.sh          # Shell script to run the entire pipeline
-├── requirements.txt         # Python dependencies
-└── README.md                # You're reading it!
-```
-
----
-
-##  How to Run This Pipeline
-
-Each step is modular and can be executed independently:
 
 ```bash
-# STEP 1: Simulate baseline survey data
-python scripts/01_simulate_baseline.py
+facebook-vaccine-campaign/
+├── data/                      # Simulated CSV datasets
+├── outputs/                   # All visualizations & result tables
+├── scripts/                   # Modular Python scripts for each analysis step
+│   ├── 01_simulate_baseline.py
+│   ├── 02_assign_ad_groups.py
+│   ├── 03_simulate_endline.py
+│   ├── 04_analyze_effectiveness.py
+│   ├── 05_network_analysis.py
+│   └── 06_network_deepdive.py
+├── run_pipeline.sh            # Shell script to run the entire pipeline
+├── requirements.txt           # Python dependencies
+└── README.md                  # Project documentation
 
-# STEP 2: Randomly assign participants to ad groups
-python scripts/02_assign_ad_groups.py
+---
+##  Dependencies
 
-# STEP 3: Simulate endline (post-campaign) survey responses
-python scripts/03_simulate_endline.py
+> ⚙️ **Tested on Python 3.8+**
 
-# STEP 4: Analyze effectiveness — ITT, TOT, regression, and visualizations
-python scripts/04_analyze_effectiveness.py
+This project requires:
 
-# STEP 5: (Optional) Analyze centrality and its effect on vaccine uptake
-python scripts/05_network_analysis.py
+```txt
+pandas
+numpy
+matplotlib
+seaborn
+networkx
+scipy
+statsmodels
+```
 
-# STEP 6: (Optional) Perform community detection and extended network visualizations
-python scripts/06_network_deepdive.py
+Install via:
 
+```bash
+pip install -r requirements.txt
+```
+---
+##  How to Run This Pipeline
+
+To run the complete simulation and analysis pipeline, simply execute the provided shell script:
+
+``` 
+bash
+bash run_pipeline.sh
+**Note: Ensure the scripts/ folder is present and intact — all the required Python files for each step are inside this directory. The pipeline depends on it to function correctly.**
 ```
 
 ---
 
-## 📁 Key Outputs
+##  Key Outputs
 
 The following outputs are generated during the execution of the analysis pipeline and saved in the `outputs/` directory:
 
@@ -129,10 +143,10 @@ The following outputs are generated during the execution of the analysis pipelin
 | `attitude_change_summary.csv`          | Average change in attitude score by group |
 | `logistic_summary.txt`                 | Full logistic regression model results |
 | `chi_square_results.txt`               | Chi-square test statistics for group differences |
-| `vaccination_summary_totcsv`           | Uptake among exposed participants (TOT)   |
+| `vaccination_summary_tot.csv`           | Uptake among exposed participants (TOT)   |
 
 
-### 📊 Key Visualizations
+###  Key Visualizations
 
 | Visualization | Description |
 |---------------|-------------|
@@ -393,7 +407,7 @@ The following outputs are generated during the execution of the analysis pipelin
   Trust in science was **not statistically significant** (`p ≈ 0.499`).  
   ➤ Instead, **ad messaging** — particularly emotional framing — played a more decisive role in driving behavior change than prior trust levels.
 
-- 🔗 **Takeaway:**  
+-  **Takeaway:**  
   While **building scientific trust** remains important, this analysis suggests that in urgent contexts like vaccination, **how messages are framed** can **outweigh pre-existing beliefs**.  
   ➤ Emotional appeals may reach and persuade even skeptical audiences — a key insight for designing effective outreach.
 
@@ -418,16 +432,16 @@ The following outputs are generated during the execution of the analysis pipelin
   ➤ **Emotionally resonant messaging** appears to **cut across ideological lines**.  
   ➤ The results suggest that **shared human values** (e.g., safety, family, belonging) are powerful entry points for public health campaigns.
 
-- 🔗 **Takeaway:**  
+-  **Takeaway:**  
   ➤ **Cross-partisan effectiveness** of ad messaging is a promising result — in polarized times, it's rare to find communication strategies that **work for everyone**.  
   ➤ Future health outreach efforts can build on this insight to create **inclusive, broadly appealing campaigns** that bridge ideological divides.
 
 
 
 
-## 🧠 Final Analysis: What Worked, What Surprised Us, and What It Means
+##  Final Analysis: What Worked, What Surprised Us, and What It Means
 
-### ✅ Effective Strategies That Emerged
+###  Effective Strategies That Emerged
 
 ---
 
@@ -438,7 +452,7 @@ The following outputs are generated during the execution of the analysis pipelin
   - **Attitude improvement** (+0.55 on average)
 - Emotional messaging remained effective **even for high-hesitancy participants**.
 
-**💡 Strategy:**  
+**Strategy:**  
 Use **storytelling, empathy, and emotional framing** in health campaigns — they are more persuasive than fact-based arguments alone.
 
 ---
@@ -448,7 +462,7 @@ Use **storytelling, empathy, and emotional framing** in health campaigns — the
 - **Liberals, Conservatives, and Moderates** showed **similar uptake rates**.
 - Contradicts the narrative that vaccine behavior is deeply divided by politics.
 
-**💡 Strategy:**  
+**Strategy:**  
 Design **non-partisan**, **relatable campaigns** that tap into shared values like safety, community, and well-being.
 
 ---
@@ -458,13 +472,13 @@ Design **non-partisan**, **relatable campaigns** that tap into shared values lik
 - Participants with **higher degree centrality** (more connected in the network) had significantly **higher vaccination rates**.
 - Socially central individuals can influence broader clusters.
 
-**💡 Strategy:**  
+**Strategy:**  
 Prioritize outreach to **community leaders, influencers, or network hubs** to **cascade positive behavior change**.
 
 ---
 
 
-## 🔍 Hidden & Unexpected Insights
+##  Hidden & Unexpected Insights
 
 ---
 
@@ -472,7 +486,7 @@ Prioritize outreach to **community leaders, influencers, or network hubs** to **
 
 - Although vaccinated participants had **slightly higher trust in science**, this factor was **not statistically significant** in the logistic regression model.
 
-**🎯 Surprise:**  
+** Surprise:**  
 Belief alone didn’t drive behavior — **how the message was framed** mattered more than baseline attitudes.
 
 ---
@@ -481,7 +495,7 @@ Belief alone didn’t drive behavior — **how the message was framed** mattered
 
 - The histogram of vaccine uptake by community revealed **distinct clustering**, even though ad exposure was uniform across the population.
 
-**🎯 Surprise:**  
+** Surprise:**  
 Behavior adoption isn’t purely random — **social environment and peer influence** shape outcomes significantly.
 
 ---
@@ -490,12 +504,12 @@ Behavior adoption isn’t purely random — **social environment and peer influe
 
 - ITT (assigned group) and TOT (actually exposed) vaccine rates were **nearly identical**.
 
-**🎯 Surprise:**  
+**Surprise:**  
 Indicates **high ad delivery and recall rates**, suggesting strong **engagement** and **intervention effectiveness** — a rare outcome in real-world campaigns.
 
 ---
 
-## 📣 Summary of What Truly Worked
+##  Summary of What Truly Worked
 
 | **Key Lever**             | **Impact**                          | **Why It Matters**                                     |
 |---------------------------|-------------------------------------|--------------------------------------------------------|
@@ -505,7 +519,7 @@ Indicates **high ad delivery and recall rates**, suggesting strong **engagement*
 
 ---
 
-## 🧩 Final Takeaway
+##  Final Takeaway
 
 > **The delivery of a message mattered more than who received it.**
 
@@ -514,45 +528,15 @@ Meanwhile, **social structure quietly amplified** these effects — meaning futu
 
 
 
-
-##  Dependencies
-
-This project requires:
-
-```txt
-pandas
-numpy
-matplotlib
-seaborn
-networkx
-scipy
-statsmodels
-```
-
-Install via:
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-##  Interpretation Highlights
-
-- **Ad_Emotion group** had the highest vaccine uptake and greatest attitude improvement
-- **Statistically significant** differences in uptake were observed (Chi2 test)
-- **Central participants** (in simulated network) were more likely to vaccinate
-- **Community-level clustering** revealed uptake varies across subgroups even in randomized contexts
-
 ---
 
 
 ##  Author
 
 **Durga Pravallika Kuchipudi**  
-Graduate Researcher & Data Scientist  
-📍 Indiana University – M.S. in Applied Data Science  
-🔗 [LinkedIn](https://www.linkedin.com/in/your-link) | 🌐 [Portfolio](https://your-portfolio.com)
+Data Scientist  
+Indiana University – M.S. in Applied Data Science  
+🔗 [LinkedIn](https://www.linkedin.com/in/durgapk/) |  [Portfolio](https://dpravzz.wixsite.com/datascienceportfolio)
 
 ---
 

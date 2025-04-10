@@ -42,12 +42,19 @@ except FileNotFoundError as e:
     exit(1)
 
 # Clean IDs
+# Clean IDs
 for df in [baseline, assignment, endline]:
-    df["participant_id"] = df["participant_id"].str.strip()
+    df["participant_id"] = df["participant_id"].astype(str).str.strip()
 
 # Merge all data
 merged = baseline.merge(assignment, on="participant_id").merge(endline, on="participant_id")
+
+# Rename the correct ad_group column from assignment_data
+merged = merged.rename(columns={"ad_group_x": "ad_group"})
+
+# Save merged data
 merged.to_csv("outputs/merged_full_data.csv", index=False)
+
 
 # ----------------------------------------
 # Simulate Campaign Exposure (Reach)
@@ -198,7 +205,7 @@ plt.close()
 # Logistic Regression
 # ----------------------------------------
 
-print("\n📈 Logistic Regression: Ad Group + Hesitancy + Trust in Science")
+print("\n Logistic Regression: Ad Group + Hesitancy + Trust in Science")
 logit_model = smf.logit("vaccine_uptake ~ C(ad_group) + vaccine_hesitancy + trust_in_science", data=merged).fit()
 print(logit_model.summary())
 pseudo_r2 = 1 - logit_model.llf / logit_model.llnull

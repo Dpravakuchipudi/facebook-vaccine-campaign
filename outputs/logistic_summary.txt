@@ -3,8 +3,8 @@
 Dep. Variable:         vaccine_uptake   No. Observations:                 4500
 Model:                          Logit   Df Residuals:                     4495
 Method:                           MLE   Df Model:                            4
-Date:                Wed, 09 Apr 2025   Pseudo R-squ.:                 0.01286
-Time:                        13:41:01   Log-Likelihood:                -3016.1
+Date:                Thu, 10 Apr 2025   Pseudo R-squ.:                 0.01286
+Time:                        12:35:14   Log-Likelihood:                -3016.1
 converged:                       True   LL-Null:                       -3055.4
 Covariance Type:            nonrobust   LLR p-value:                 3.434e-16
 ============================================================================================
