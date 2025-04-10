@@ -50,38 +50,24 @@ This design mirrors experimental protocols used in behavioral and public health 
 
 This analysis blends statistical methods, causal inference, and network science to assess how different Facebook ad strategies influence vaccine uptake.
 
-1. Statistical Evaluation
-Compared vaccine uptake rates across groups using bar plots and proportions
+- **1. Statistical Evaluation:**
+- Compared vaccine uptake rates across groups using bar plots and proportions
+- Measured attitude changes pre- and post-intervention
+- Used Chi-square tests to assess if uptake differences were statistically significant
+- Performed a t-test to evaluate the effect of social connectivity (centrality) on vaccination
 
-Measured attitude changes pre- and post-intervention
+- **2. Causal Inference**
+- Applied Intention-to-Treat (ITT) and Treatment-on-the-Treated (TOT) frameworks to estimate campaign impact
+- Built a logistic regression model incorporating:
+-  Assigned ad group , Vaccine hesitancy , Trust in science
+- Found that emotional ads had the strongest effect even after controlling for these factors
 
-Used Chi-square tests to assess if uptake differences were statistically significant
-
-Performed a t-test to evaluate the effect of social connectivity (centrality) on vaccination
-
-2. Causal Inference
-Applied Intention-to-Treat (ITT) and Treatment-on-the-Treated (TOT) frameworks to estimate campaign impact
-
-Built a logistic regression model incorporating:
-
-Assigned ad group
-
-Vaccine hesitancy
-
-Trust in science
-
-Found that emotional ads had the strongest effect even after controlling for these factors
-
-3. Network Insights (Simulated Social Structure)
-Simulated a social network using the Erdős–Rényi model
-
-Measured degree centrality to identify influential nodes
-
-Detected communities to explore group-level clustering of vaccine behaviors
-
-Found higher uptake among well-connected individuals and distinct variation across social groups
-
-All code-generated outputs, graphs, and statistical results are saved in the outputs/ folder for full reproducibility.
+- **3. Network Insights (Simulated Social Structure)**
+- Simulated a social network using the Erdős–Rényi model
+- Measured degree centrality to identify influential nodes
+- Detected communities to explore group-level clustering of vaccine behaviors
+- Found higher uptake among well-connected individuals and distinct variation across social groups
+- All code-generated outputs, graphs, and statistical results are saved in the outputs/ folder for full reproducibility.
 
 ---
 
@@ -110,23 +96,24 @@ facebook-vaccine-campaign/
 Each step is modular and can be executed independently:
 
 ```bash
-# STEP 1: Simulate baseline survey
-python scripts/01_baseline_only.py
+# STEP 1: Simulate baseline survey data
+python scripts/01_simulate_baseline.py
 
-# STEP 2: Randomly assign ad groups
-python scripts/02_assign_groups.py
+# STEP 2: Randomly assign participants to ad groups
+python scripts/02_assign_ad_groups.py
 
-# STEP 3: Simulate endline responses
+# STEP 3: Simulate endline (post-campaign) survey responses
 python scripts/03_simulate_endline.py
 
-# STEP 4: Analyze ITT, TOT, regression, visualizations
+# STEP 4: Analyze effectiveness — ITT, TOT, regression, and visualizations
 python scripts/04_analyze_effectiveness.py
 
-# STEP 5: Optional — Centrality and uptake boxplot
+# STEP 5: (Optional) Analyze centrality and its effect on vaccine uptake
 python scripts/05_network_analysis.py
 
-# STEP 6: Optional — Community structure, t-test, subgraph visuals
+# STEP 6: (Optional) Perform community detection and extended network visualizations
 python scripts/06_network_deepdive.py
+
 ```
 
 ---
@@ -169,57 +156,40 @@ The following outputs are generated during the execution of the analysis pipelin
 
 ![Summary Visuals](outputs/summary_visuals_combined.png)
 
-Vaccination Rates by Ad Type
-
-Emotion-based ads resulted in the highest vaccine uptake (~65%), followed by reason-based ads (~60%) and the control group (~50%).
-
+- **Vaccination Rates by Ad Type**
+➤ Emotion-based ads resulted in the highest vaccine uptake (~65%), followed by reason-based ads (~60%) and the control group (~50%).
 ➤ Emotionally driven messaging was the most persuasive in encouraging vaccinations.
 
-Vaccine Uptake Across Hesitancy Levels
-
-The emotion group maintained higher uptake across all hesitancy scores.
-
+- **Vaccine Uptake Across Hesitancy Levels**
+➤ The emotion group maintained higher uptake across all hesitancy scores.
 ➤ Even hesitant individuals responded better to emotional appeals.
 
-Trust in Science vs Vaccine Uptake
-
-People who got vaccinated showed slightly higher average trust in science, but the overlap was notable.
-
+- **Trust in Science vs Vaccine Uptake**
+➤ People who got vaccinated showed slightly higher average trust in science, but the overlap was notable.
 ➤ Trust plays a role, but alone doesn't explain vaccine behavior — messaging remains key.
 
-Political Affiliation and Uptake
-
-All political groups (liberal, moderate, conservative) showed similar vaccination rates when exposed to ads.
-
+- **Political Affiliation and Uptake**
+➤ All political groups (liberal, moderate, conservative) showed similar vaccination rates when exposed to ads.
 ➤ Ad impact was consistent across political identities, showing broad effectiveness.
 
 
 
-1. Vaccine Uptake by Ad Type
+1. **Vaccine Uptake by Ad Type**
 
 ![Uptake by Group](outputs/vaccine_uptake_by_ad_group.png) 
+- What You’re Seeing:
+➤ This bar chart shows the vaccination rates among participants who were randomly assigned to one of three groups:
+➤ Ad_Emotion: Received emotionally-driven messaging (e.g., family safety, social belonging)
+➤ Ad_Reason: Received rational, fact-based messaging (e.g., clinical efficacy, side effects)
+➤ Control: Received no ad at all
 
-What You’re Seeing:
+- Interpretation:
+➤ Emotionally framed ads drove the highest behavior change — suggesting people respond more to affective appeals than logic alone.
+➤ Statistical evidence: A Chi-square test confirmed these differences were significant (χ² = 73.37, p < 0.001).
+➤ This supports psychological theories like the Affect Heuristic — when decisions are influenced more by emotional reaction than detailed analysis.
 
-This bar chart shows the vaccination rates among participants who were randomly assigned to one of three groups:
-
-Ad_Emotion: Received emotionally-driven messaging (e.g., family safety, social belonging)
-
-Ad_Reason: Received rational, fact-based messaging (e.g., clinical efficacy, side effects)
-
-Control: Received no ad at all
-
-Interpretation:
-
-Emotionally framed ads drove the highest behavior change — suggesting people respond more to affective appeals than logic alone.
-
-Statistical evidence: A Chi-square test confirmed these differences were significant (χ² = 73.37, p < 0.001).
-
-This supports psychological theories like the Affect Heuristic — when decisions are influenced more by emotional reaction than detailed analysis.
-
-Why It Matters:
-
-In real-world health campaigns, how you say something matters just as much as what you say. This experiment underscores the need to craft emotionally resonant messages to drive public behavior — especially in times of uncertainty.
+- Why It Matters:
+➤ In real-world health campaigns, how you say something matters just as much as what you say. This experiment underscores the need to craft emotionally resonant messages to drive public behavior — especially in times of uncertainty.
 
 2. Change in Vaccine Attitudes
 
