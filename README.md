@@ -178,15 +178,15 @@ The following outputs are generated during the execution of the analysis pipelin
 
 ![Uptake by Group](outputs/vaccine_uptake_by_ad_group.png) 
 - What You’re Seeing:
-➤ This bar chart shows the vaccination rates among participants who were randomly assigned to one of three groups:
-➤ Ad_Emotion: Received emotionally-driven messaging (e.g., family safety, social belonging)
-➤ Ad_Reason: Received rational, fact-based messaging (e.g., clinical efficacy, side effects)
-➤ Control: Received no ad at all
+    ➤ This bar chart shows the vaccination rates among participants who were randomly assigned to one of three groups:
+    ➤ Ad_Emotion: Received emotionally-driven messaging (e.g., family safety, social belonging)
+    ➤ Ad_Reason: Received rational, fact-based messaging (e.g., clinical efficacy, side effects)
+    ➤ Control: Received no ad at all
 
 - Interpretation:
-➤ Emotionally framed ads drove the highest behavior change — suggesting people respond more to affective appeals than logic alone.
-➤ Statistical evidence: A Chi-square test confirmed these differences were significant (χ² = 73.37, p < 0.001).
-➤ This supports psychological theories like the Affect Heuristic — when decisions are influenced more by emotional reaction than detailed analysis.
+    ➤ Emotionally framed ads drove the highest behavior change — suggesting people respond more to affective appeals than logic alone.
+    ➤ Statistical evidence: A Chi-square test confirmed these differences were significant (χ² = 73.37, p < 0.001).
+    ➤ This supports psychological theories like the Affect Heuristic — when decisions are influenced more by emotional reaction than detailed analysis.
 
 - Why It Matters:
 ➤ In real-world health campaigns, how you say something matters just as much as what you say. This experiment underscores the need to craft emotionally resonant messages to drive public behavior — especially in times of uncertainty.
