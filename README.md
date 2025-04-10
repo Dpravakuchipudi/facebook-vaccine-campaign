@@ -50,19 +50,19 @@ This design mirrors experimental protocols used in behavioral and public health 
 
 This analysis blends statistical methods, causal inference, and network science to assess how different Facebook ad strategies influence vaccine uptake.
 
-- **1. Statistical Evaluation:**
+**1. Statistical Evaluation:**
 - Compared vaccine uptake rates across groups using bar plots and proportions
 - Measured attitude changes pre- and post-intervention
 - Used Chi-square tests to assess if uptake differences were statistically significant
 - Performed a t-test to evaluate the effect of social connectivity (centrality) on vaccination
 
-- **2. Causal Inference**
+**2. Causal Inference**
 - Applied Intention-to-Treat (ITT) and Treatment-on-the-Treated (TOT) frameworks to estimate campaign impact
 - Built a logistic regression model incorporating:
 -  Assigned ad group , Vaccine hesitancy , Trust in science
 - Found that emotional ads had the strongest effect even after controlling for these factors
 
-- **3. Network Insights (Simulated Social Structure)**
+**3. Network Insights (Simulated Social Structure)**
 - Simulated a social network using the Erdős–Rényi model
 - Measured degree centrality to identify influential nodes
 - Detected communities to explore group-level clustering of vaccine behaviors
@@ -157,20 +157,20 @@ The following outputs are generated during the execution of the analysis pipelin
 ![Summary Visuals](outputs/summary_visuals_combined.png)
 
 - **Vaccination Rates by Ad Type**
-➤ Emotion-based ads resulted in the highest vaccine uptake (~65%), followed by reason-based ads (~60%) and the control group (~50%).
-➤ Emotionally driven messaging was the most persuasive in encouraging vaccinations.
+    ➤ Emotion-based ads resulted in the highest vaccine uptake (~65%), followed by reason-based ads (~60%) and the control group (~50%).
+    ➤ Emotionally driven messaging was the most persuasive in encouraging vaccinations.
 
 - **Vaccine Uptake Across Hesitancy Levels**
-➤ The emotion group maintained higher uptake across all hesitancy scores.
-➤ Even hesitant individuals responded better to emotional appeals.
+    ➤ The emotion group maintained higher uptake across all hesitancy scores.
+    ➤ Even hesitant individuals responded better to emotional appeals.
 
 - **Trust in Science vs Vaccine Uptake**
-➤ People who got vaccinated showed slightly higher average trust in science, but the overlap was notable.
-➤ Trust plays a role, but alone doesn't explain vaccine behavior — messaging remains key.
+    ➤ People who got vaccinated showed slightly higher average trust in science, but the overlap was notable.
+    ➤ Trust plays a role, but alone doesn't explain vaccine behavior — messaging remains key.
 
 - **Political Affiliation and Uptake**
-➤ All political groups (liberal, moderate, conservative) showed similar vaccination rates when exposed to ads.
-➤ Ad impact was consistent across political identities, showing broad effectiveness.
+    ➤ All political groups (liberal, moderate, conservative) showed similar vaccination rates when exposed to ads.
+    ➤ Ad impact was consistent across political identities, showing broad effectiveness.
 
 
 
