@@ -157,20 +157,20 @@ The following outputs are generated during the execution of the analysis pipelin
 ![Summary Visuals](outputs/summary_visuals_combined.png)
 
 - **Vaccination Rates by Ad Type**
-    ➤ Emotion-based ads resulted in the highest vaccine uptake (~65%), followed by reason-based ads (~60%) and the control group (~50%).
-    ➤ Emotionally driven messaging was the most persuasive in encouraging vaccinations.
+  - Emotion-based ads resulted in the highest vaccine uptake (~65%), followed by reason-based ads (~60%) and the control group (~50%).
+  - Emotionally driven messaging was the most persuasive in encouraging vaccinations.
 
 - **Vaccine Uptake Across Hesitancy Levels**
-    ➤ The emotion group maintained higher uptake across all hesitancy scores.
-    ➤ Even hesitant individuals responded better to emotional appeals.
+  - The emotion group maintained higher uptake across all hesitancy scores.
+  - Even hesitant individuals responded better to emotional appeals.
 
 - **Trust in Science vs Vaccine Uptake**
-    ➤ People who got vaccinated showed slightly higher average trust in science, but the overlap was notable.
-    ➤ Trust plays a role, but alone doesn't explain vaccine behavior — messaging remains key.
+  - People who got vaccinated showed slightly higher average trust in science, but the overlap was notable.
+  - Trust plays a role, but alone doesn't explain vaccine behavior — messaging remains key.
 
 - **Political Affiliation and Uptake**
-    ➤ All political groups (liberal, moderate, conservative) showed similar vaccination rates when exposed to ads.
-    ➤ Ad impact was consistent across political identities, showing broad effectiveness.
+  - All political groups (Liberal, Moderate, Conservative) showed similar vaccination rates when exposed to ads.
+  - Ad impact was consistent across political identities, showing broad effectiveness.
 
 
 
