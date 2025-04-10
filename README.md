@@ -174,295 +174,344 @@ The following outputs are generated during the execution of the analysis pipelin
 
 
 
-1. **Vaccine Uptake by Ad Type**
+### 1. **Vaccine Uptake by Ad Type**
 
-![Uptake by Group](outputs/vaccine_uptake_by_ad_group.png) 
-- What You’re Seeing:
-    ➤ This bar chart shows the vaccination rates among participants who were randomly assigned to one of three groups:
-    ➤ Ad_Emotion: Received emotionally-driven messaging (e.g., family safety, social belonging)
-    ➤ Ad_Reason: Received rational, fact-based messaging (e.g., clinical efficacy, side effects)
-    ➤ Control: Received no ad at all
+![Uptake by Group](outputs/vaccine_uptake_by_ad_group.png)
 
-- Interpretation:
-    ➤ Emotionally framed ads drove the highest behavior change — suggesting people respond more to affective appeals than logic alone.
-    ➤ Statistical evidence: A Chi-square test confirmed these differences were significant (χ² = 73.37, p < 0.001).
-    ➤ This supports psychological theories like the Affect Heuristic — when decisions are influenced more by emotional reaction than detailed analysis.
+- **What You’re Seeing:**  
+  This bar chart shows the vaccination rates among participants who were randomly assigned to one of three groups:
 
-- Why It Matters:
-➤ In real-world health campaigns, how you say something matters just as much as what you say. This experiment underscores the need to craft emotionally resonant messages to drive public behavior — especially in times of uncertainty.
+  - ➤ **Ad_Emotion:** Received emotionally-driven messaging (e.g., family safety, social belonging)  
+  - ➤ **Ad_Reason:** Received rational, fact-based messaging (e.g., clinical efficacy, side effects)  
+  - ➤ **Control:** Received no ad at all
 
-2. Change in Vaccine Attitudes
+- **Interpretation:**  
+  - ➤ Emotionally framed ads drove the highest behavior change — suggesting people respond more to affective appeals than logic alone.  
+  - ➤ **Statistical evidence:** A Chi-square test confirmed these differences were significant (χ² = 73.37, p < 0.001).  
+  - ➤ This supports psychological theories like the *Affect Heuristic* — where decisions are influenced more by emotional reaction than detailed analysis.
+
+- **Why It Matters:**  
+  ➤ In real-world health campaigns, *how* you say something matters just as much as *what* you say.  
+  ➤ This experiment underscores the importance of crafting emotionally resonant messages to drive public behavior — especially in times of uncertainty.
+
+
+### 2. **Change in Vaccine Attitudes**
 
 ![Attitude Change](outputs/attitude_change_by_group.png)
 
-This boxplot displays how participants’ attitudes toward COVID-19 vaccines changed after exposure to different types of Facebook ads. The metric reflects:
+- **What You’re Seeing:**  
+  This boxplot displays how participants’ attitudes toward COVID-19 vaccines changed after exposure to different types of Facebook ads.
 
-Post-survey score − Baseline score
-Higher values mean improved attitudes toward vaccination.
+  > The metric shown is:  
+  > **Post-survey score − Baseline score**  
+  > Higher values indicate a more positive shift in vaccine attitudes.
 
-Group	Average Attitude Change
-Ad_Emotion	+0.55 ✅
-Ad_Reason	+0.22
-Control	−0.03 ❌
+- **Group-wise Average Attitude Change:**
+  - ✅ **Ad_Emotion:** +0.55 (strongest positive shift)  
+  - **Ad_Reason:** +0.22  
+  - ❌ **Control:** −0.03 (slight regression)
 
-Key Insights:
-Participants exposed to emotional ads experienced the largest positive attitude shift — showing that these messages don’t just influence behavior, they shift underlying beliefs.
+- **Key Insights:**  
+  - ➤ Participants exposed to emotional ads experienced the largest positive attitude shift — showing that these messages don’t just influence actions but also beliefs.  
+  - ➤ Rational ads also improved attitudes but to a lesser extent.  
+  - ➤ Control group (no ad exposure) slightly regressed, possibly due to vaccine fatigue or external media influence.
 
-Rational ads also improved attitudes but to a lesser extent.
-
-Control group (no ad exposure) showed a slight regression in attitude, possibly reflecting general vaccine fatigue or external media influences.
-
-Why It Matters:
-Attitude change is a strong predictor of long-term behavior.
-This result reinforces the idea that emotionally charged messages not only nudge action but also reshape public opinion, making them powerful tools in public health campaigns.
+- **Why It Matters:**  
+  ➤ Attitude change is a strong predictor of long-term behavior.  
+  ➤ This reinforces that emotionally charged messages not only nudge immediate action but also help reshape public opinion — a crucial factor in designing effective public health campaigns.
 
 
-3. Intention-to-Treat (ITT) vs Treatment-on-the-Treated (TOT)
+
+### 3. **Intention-to-Treat (ITT) vs Treatment-on-the-Treated (TOT)**
 
 ![ITT vs TOT](outputs/itt_vs_tot_comparison.png)
 
-What it shows:
-ITT (green bars): The average vaccination rate across everyone assigned to each ad group — whether or not they actually saw or remembered the ad.
+- **What You’re Seeing:**  
+  This bar chart compares two evaluation approaches:
 
-TOT (orange bars): The rate among only those who actually received the intended treatment (i.e., the ad was delivered/acknowledged).
+  - **ITT (green bars):** Average vaccination rate across everyone assigned to each ad group — regardless of whether they saw the ad.  
+  - **TOT (orange bars):** Vaccination rate among only those who actually received the treatment (i.e., were exposed to the ad).
 
-Why this matters (non-technical):
-This helps us separate the overall impact of assigning someone to a campaign (ITT) from the actual effect on people who truly experienced it (TOT). TOT is often more accurate for understanding the real effectiveness of an intervention.
+- **Why This Matters (Non-Technical):**  
+  ➤ ITT helps understand the overall effect of campaign *assignment*.  
+  ➤ TOT isolates the impact on those who truly *experienced* the intervention.  
+  ➤ TOT is often more accurate for measuring real effectiveness when not everyone engages with the treatment.
 
-Key insights:
-The TOT and ITT values are close — especially in the Ad_Emotion group — suggesting good engagement and delivery.
-
-The Ad_Emotion group again leads with the highest rates under both ITT and TOT, reinforcing its effectiveness.
-
-The Control group (no ad) had the lowest uptake, as expected.
-
-
-
-4. Statistical Significance & Predictive Modeling
-
-Chi-Square Test
-
-χ² = 73.37, p < 0.001 → differences in uptake across groups are highly significant.
+- **Key Insights:**  
+  - ➤ TOT and ITT values are fairly close — especially for the **Ad_Emotion** group — indicating strong ad delivery and engagement.  
+  - ➤ The **Ad_Emotion** group again outperformed others under both ITT and TOT, reinforcing its consistent effectiveness.  
+  - ➤ The **Control** group (no ad exposure) had the lowest uptake, as expected.
 
 
-![Logistic Regression Summary](outputs/logistic_summary.txt) 
-
-Predictor	Coefficient	p-value	Interpretation
-Ad_Reason	−0.23	0.002	Lower odds than Ad_Emotion
-Control	−0.63	< 0.001	Much lower odds than Ad_Emotion
-Vaccine Hesitancy	+0.05	0.028	Slight positive predictor
-Trust in Science	NS	0.499	Not statistically significant
-➤ Being in the Ad_Emotion group significantly increased odds of vaccination..
 
 
-5. Vaccine Uptake Across Hesitancy Levels
+### 4. **Statistical Significance & Predictive Modeling**
+
+- **Chi-Square Test of Independence:**  
+  - χ² = 73.37, p < 0.001  
+  - ➤ *Differences in vaccine uptake across groups are highly statistically significant.*
+
+- **Logistic Regression Summary:**  
+  *(See full output in [`logistic_summary.txt`](outputs/logistic_summary.txt))*
+
+| Predictor           | Coefficient | p-value | Interpretation                                 |
+|---------------------|-------------|---------|------------------------------------------------|
+| **Ad_Reason**        | −0.23       | 0.002   | Lower odds of vaccination than Ad_Emotion      |
+| **Control**          | −0.63       | < 0.001 | Much lower odds than Ad_Emotion                |
+| **Vaccine Hesitancy**| +0.05       | 0.028   | Slight positive predictor (unexpectedly)       |
+| **Trust in Science** | Not Sig.    | 0.499   | Not statistically significant in this model    |
+
+- **Key Insights:**  
+  - ➤ Belonging to the **Ad_Emotion** group significantly increased the odds of vaccination.  
+  - ➤ Surprisingly, **vaccine hesitancy** had a small *positive* effect — possibly due to highly hesitant individuals being especially impacted by emotional appeals.  
+  - ➤ **Trust in science** alone was *not a strong predictor* of actual behavior in this model.
+
+
+
+### 5. **Vaccine Uptake Across Hesitancy Levels**
+
 ![Hesitancy Lineplot](outputs/uptake_by_hesitancy_adgroup.png)
 
-This line plot compares vaccination rates across 5 levels of vaccine hesitancy, broken down by ad group
+- **What You’re Seeing:**  
+  This line plot compares vaccination rates across five levels of vaccine hesitancy (1 = low hesitancy, 5 = high hesitancy), broken down by ad group (Emotion, Reason, Control).
 
-Hesitancy scores range from 1 (low hesitancy) to 5 (high hesitancy).
+- **Why This Matters:**  
+  ➤ It reveals whether ad effectiveness holds up even among more hesitant individuals — a crucial insight for real-world public health outreach.
 
-Why this matters:
-It helps us see whether the effectiveness of ad messaging holds up even among more hesitant individuals — a critical insight for public health outreach.
+- **Key Insights:**  
+  - ➤ **Emotion-based ads consistently outperformed** both other groups across *all* hesitancy levels.  
+  - ➤ Even among **highly hesitant participants (score = 5)**, emotional messaging maintained a higher uptake.  
+  - ➤ **Reason-based ads** performed better than the control group, but not as effectively as emotional ones.  
+  - ➤ The **Control group** showed the lowest uptake regardless of hesitancy.
 
-Key insights:
-Emotion-based ads consistently outperform both other groups across all hesitancy levels.
-Even among highly hesitant participants (score 5), emotional messaging maintained higher uptake, indicating its resilience.
-Reason-based ads performed better than the control group, but not as strongly as emotional ones.
-The control group showed the lowest uptake regardless of hesitancy.
+- **Interpretation:**  
+  ➤ This analysis reinforces the idea that **emotionally persuasive messaging** can help overcome even deeply rooted vaccine hesitancy — proving valuable when **rational or informational appeals alone fall short.**
 
-Interpretation:
-This plot supports the idea that emotionally persuasive messaging can help overcome even deeply rooted vaccine hesitancy — a valuable strategy when factual arguments alone fall short.
 
-6.  Network Behavior Visualization
+### 6. **Network Behavior Visualization**
 
 ![Subnetwork Vaccination Spread](outputs/network_graph_sample.png)
 
-What this shows:
-This network graph represents a simulated social network of individuals in the study.
-Each dot (node) is a person, and lines (edges) show who is connected to whom — i.e., potential influence paths through social interaction.
+- **What You’re Seeing:**  
+  This network graph represents a simulated social network of study participants.  
+  - Each **dot (node)** = a participant  
+  - Each **line (edge)** = a social connection (potential influence path)  
+  - **Blue nodes** = Vaccinated individuals  
+  - **Gray nodes** = Unvaccinated individuals
 
-Blue nodes likely represent vaccinated individuals
+- **Why This Matters:**  
+  ➤ Health behaviors like vaccination don’t happen in isolation — they often spread through **peer influence**.  
+  ➤ This visualization helps us see how vaccination might **cascade** through tightly connected groups.
 
-Gray nodes likely represent those who were not vaccinated
+- **Key Insights:**  
+  - ➤ **Vaccination behavior clusters** — people connected to vaccinated individuals tend to be vaccinated too.  
+  - ➤ **Dense subgroups** amplify influence — a few adopters can trigger wider uptake within their cluster.  
+  - ➤ **Isolated nodes** on the periphery remain unaffected, showing the power of social embeddedness.
 
-Edges visualize how people are embedded in clusters or communities.
-
-Why this matters:
-Health behaviors like vaccination often spread through peer influence. This visualization allows us to observe how information or behavior might cascade through tightly-knit groups.
-
-Key insights:
-Vaccination tends to cluster — people connected to vaccinated individuals are more likely to be vaccinated themselves.
-Dense clusters show how influence can amplify — once a few people adopt behavior (get vaccinated), their neighbors often follow.
-More isolated nodes (on the periphery) appear unaffected, highlighting the importance of social embeddedness in behavior change.
-
-Interpretation:
-This supports the idea that social networks can amplify the effects of persuasive messaging. Future campaigns might prioritize influential individuals or central nodes to trigger broader adoption.
-
+- **Interpretation:**  
+  ➤ This highlights that **networks can magnify the effects of persuasive messaging**.  
+  ➤ Future public health strategies might target **highly connected individuals (central nodes)** to seed broader adoption more efficiently.
 
 
-7. Network Influence on Behavior
+
+
+### 7. **Network Influence on Behavior**
 
 ![Centrality vs Uptake](outputs/network_centrality_vs_uptake.png)
 
+- **What You’re Seeing:**  
+  This boxplot compares **degree centrality** between two groups:  
+  - `0` = Not Vaccinated  
+  - `1` = Vaccinated  
+  
+  **Degree centrality** quantifies how connected someone is within the network — the higher the score, the more people they're directly connected to.
 
-What this shows:
-This boxplot compares degree centrality between two groups:
+- **Why This Matters:**  
+  ➤ Socially central individuals are **more exposed to peer influence**, behaviors, and ideas — which can shape their decisions, especially regarding health behavior like vaccination.
 
-0 = Not Vaccinated
+- **Key Findings:**  
+  - ➤ Vaccinated participants had **slightly higher median centrality** than unvaccinated ones.  
+  - ➤ A **t-test** confirmed this difference was **statistically significant**:  
+    `t = 2.00, p = 0.045`  
+  - ➤ Though modest, the result suggests that **social positioning** can influence vaccine uptake.
 
-1 = Vaccinated
+- **Interpretation:**  
+  ➤ Highly connected individuals may:  
+    - Be **exposed to more vaccine-positive peers**  
+    - **Engage more** with campaign content  
+    - Be perceived as **opinion leaders** within their networks  
+  
+  ➤ Public health efforts can **leverage these nodes** to amplify messaging and promote ripple effects throughout communities.
 
-Degree centrality measures how many direct connections a person has in the network (i.e., how “socially central” they are).
 
-Why this matters:
-If someone is more central in a network, they’re more exposed to others’ behaviors, opinions, and influence — which could affect their own choices.
+### 8. **Community-Level Behavior Patterns**
 
-Key findings:
-People who got vaccinated had slightly higher median centrality compared to those who didn’t.
+![Community Histogram](outputs/vaccine_uptake_by_community.png)
 
-A t-test confirmed this difference was statistically significant (t = 2.00, p = 0.045).
+- **What You’re Seeing:**  
+  This histogram shows the distribution of **average vaccine uptake rates** across different **communities** (i.e., clusters of interconnected individuals identified through community detection algorithms).
 
-Even though the difference is modest, it suggests that social positioning influences vaccine decisions.
+  Each bar represents how many communities fell into a particular uptake range.
 
-Interpretation:
-Highly connected individuals might be:
-More exposed to vaccine-positive peers
-Seen as more influential and thus targeted more by the campaign
-More likely to engage with persuasive content circulating in their networks
-This reinforces the value of targeting key network nodes in public health campaigns to maximize ripple effects.
+- **Why This Matters:**  
+  ➤ Even when participants receive **the same type of ad**, their **social environment** — the community they’re embedded in — can greatly influence whether they choose to vaccinate.  
+  ➤ Communities reflect **real-world clusters** like friends, families, or coworkers.  
+  ➤ Behavior often spreads within such groups due to **shared norms**, peer discussions, or mutual influence.
 
-8. Community Level Behavior Patterns
-![Community Histogram](outputs/vaccine_uptake_by_community.png)  
+- **Key Insights:**  
+  - ➤ Vaccine uptake rates **varied significantly between communities**, despite consistent ad exposure.  
+  - ➤ This points to **non-random clustering** in behavior — certain communities became “high-uptake zones,” while others lagged.  
+  - ➤ Indicates a **social contagion effect**, where behavior is adopted through local influence.
 
-What this shows:
-This histogram displays the distribution of average vaccine uptake rates across communities (clusters of interconnected individuals in the network).
+- **Interpretation:**  
+  ➤ This visualization highlights the **power of peer influence** and underscores the value of **network-aware public health strategies**.  
+  ➤ Targeting **highly connected communities** or those with rising adoption rates can help public health campaigns scale more effectively by leveraging **positive momentum within clusters**.
 
-Each bar represents how many communities had a specific average vaccination rate.
 
-Why this matters:
-. Even when individuals receive the same ads, their behavior can be influenced by the social environment — or community — they belong to.
-. These communities reflect realistic social clusters (friends, family, coworkers).
-. Uptake varied across these clusters, showing the importance of local social norms and peer behavior in decision-making.
 
-Key insights:
-. Some communities had noticeably higher vaccine adoption rates than others, despite uniform exposure to ads.
-. This points to non-random clustering in health behavior — behaviors like vaccination may spread locally within social groups.
-. Interventions targeting highly connected communities or leveraging peer norms could lead to more efficient public health outcomes.
 
-Interpretation:
-This visualization strengthens the case for network-aware messaging strategies — if a behavior gains traction in one part of the network, it can ripple outwards. Identifying and engaging high-uptake communities could be key for scaling impact.
+### 9. **Role of Trust in Science on Vaccine Uptake**
 
+![Trust Boxplot](outputs/trust_vs_uptake_boxplot.png)
 
+- **What You’re Seeing:**  
+  This boxplot compares **trust in science scores** (rated 1 to 5) between participants who **got vaccinated (1)** and those who **did not (0)**.  
+  The central line in each box shows the **median trust score**, and the spread highlights the variation within each group.
 
-9. Role of Trust in Science on Vaccine Uptake
+- **Why This Matters:**  
+  ➤ **Trust in science** is often viewed as a critical factor in public health decision-making — but this visualization provides a **nuanced perspective**.
 
-![Trust Boxplot](outputs/trust_vs_uptake_boxplot.png)  
+- **Key Insights:**  
+  - ➤ Vaccinated participants **tended to have slightly higher trust** in science.  
+  - ➤ However, there was **substantial overlap**:
+    - Many with **low trust still chose to vaccinate**  
+    - Some with **high trust did not**  
+  - ➤ This indicates that **trust alone is not deterministic** of vaccine behavior.
 
-What this shows:
-This boxplot compares participants’ trust in science between those who got vaccinated (1) and those who did not (0).
+- **Interpretation:**  
+  ➤ The **logistic regression** model supports this:  
+  Trust in science was **not statistically significant** (`p ≈ 0.499`).  
+  ➤ Instead, **ad messaging** — particularly emotional framing — played a more decisive role in driving behavior change than prior trust levels.
 
-Each box shows the distribution of trust levels (rated 1 to 5) within each group.
+- 🔗 **Takeaway:**  
+  While **building scientific trust** remains important, this analysis suggests that in urgent contexts like vaccination, **how messages are framed** can **outweigh pre-existing beliefs**.  
+  ➤ Emotional appeals may reach and persuade even skeptical audiences — a key insight for designing effective outreach.
 
-The median line represents the typical level of trust for each group.
 
-Why this matters:
-Trust in science is often assumed to be a strong driver of vaccine uptake, but this visualization offers a more nuanced view.
+### 10. **Vaccine Uptake by Political Affiliation**
 
-Key Insights:
-Participants who chose to get vaccinated generally had slightly higher trust in science.
+![Political Uptake](outputs/uptake_by_political_affiliation.png)
 
-However, the overlap between the groups is significant:
+- **What You’re Seeing:**  
+  This **stacked bar chart** shows the proportion of participants who **vaccinated (blue)** and **did not vaccinate (red)**, categorized by their **political affiliation**: Conservative, Liberal, and Moderate.
 
-Many people with lower trust still got vaccinated.
+- **Why This Matters:**  
+  ➤ Political identity often correlates with public health skepticism, media trust, and vaccine hesitancy.  
+  ➤ This visualization tests whether those biases influence behavior **within a controlled experimental context**.
 
-Some with higher trust did not.
+- **Key Insights:**  
+  - All political groups — **Conservative, Liberal, Moderate** — showed **similar vaccination rates**.  
+  - The ad campaigns (reason-based and emotion-based) were **effective regardless of political affiliation**.  
+  - There was **no significant evidence** that ideology weakened or enhanced the ads’ influence.
 
-Interpretation:
-While trust in science may support pro-vaccine attitudes, it wasn’t a strong standalone predictor of actual behavior in this simulation.
+- **Interpretation:**  
+  ➤ **Emotionally resonant messaging** appears to **cut across ideological lines**.  
+  ➤ The results suggest that **shared human values** (e.g., safety, family, belonging) are powerful entry points for public health campaigns.
 
-This aligns with the regression model results, where trust in science was not statistically significant (p ≈ 0.499).
+- 🔗 **Takeaway:**  
+  ➤ **Cross-partisan effectiveness** of ad messaging is a promising result — in polarized times, it's rare to find communication strategies that **work for everyone**.  
+  ➤ Future health outreach efforts can build on this insight to create **inclusive, broadly appealing campaigns** that bridge ideological divides.
 
-Messaging strategies, especially emotional ones, likely played a larger role in influencing behavior than baseline trust.
 
-🔗 Takeaway:
-Efforts to increase scientific trust are valuable — but in high-stakes decisions like vaccination, how information is framed may matter more than pre-existing beliefs.
 
-10. Vaccine Uptake by Political Affiliation
 
-[Political Uptake](outputs/uptake_by_political_affiliation.png)
+## 🧠 Final Analysis: What Worked, What Surprised Us, and What It Means
 
-This stacked bar chart displays the proportion of participants who vaccinated (blue) and did not vaccinate (red), broken down by political identity: Conservative, Liberal, and Moderate.
+### ✅ Effective Strategies That Emerged
 
-Why this matters:
-Political ideology is often linked to public health opinions and media consumption — especially in the context of vaccines. This graph tests whether those affiliations influenced vaccine behavior in a controlled simulation where all groups saw the same types of ads.
+---
 
-Key Insights:
-All three groups had very similar vaccine uptake rates, regardless of political identity.
+#### 1. **Emotionally Charged Ads Drive Behavior Change**
 
-The ads’ effectiveness did not appear to be diminished or boosted significantly by political leanings.
+- The **Ad_Emotion** group consistently outperformed all others in:
+  - **Vaccine uptake** (~65%)
+  - **Attitude improvement** (+0.55 on average)
+- Emotional messaging remained effective **even for high-hesitancy participants**.
 
-Interpretation:
-Messaging strategies used (especially emotional and reason-based ads) worked broadly across political lines.
+**💡 Strategy:**  
+Use **storytelling, empathy, and emotional framing** in health campaigns — they are more persuasive than fact-based arguments alone.
 
-This suggests a level of cross-partisan persuasiveness, which is rare but valuable in real-world health communication.
+---
 
-Takeaway:
-While political ideology is often assumed to polarize vaccine opinions, this analysis shows that well-crafted messaging can resonate across ideological divides — a promising insight for future campaigns.
+#### 2. **Consistency Across Political Identities**
 
+- **Liberals, Conservatives, and Moderates** showed **similar uptake rates**.
+- Contradicts the narrative that vaccine behavior is deeply divided by politics.
 
+**💡 Strategy:**  
+Design **non-partisan**, **relatable campaigns** that tap into shared values like safety, community, and well-being.
 
-## Final Analysis: What Worked, What Surprised Us, and What It Means
-Effective Strategies That Emerged
-1. Emotionally Charged Ads Drive Behavior Change
+---
 
-The Ad_Emotion group outperformed all others in both vaccine uptake and positive attitude shifts.
+#### 3. **Network Centrality Influences Behavior**
 
-Even among participants with high vaccine hesitancy, emotion-based messaging still led to the highest uptake.
+- Participants with **higher degree centrality** (more connected in the network) had significantly **higher vaccination rates**.
+- Socially central individuals can influence broader clusters.
 
-Strategy: Use storytelling, empathy, and emotional resonance in public health campaigns — not just facts.
+**💡 Strategy:**  
+Prioritize outreach to **community leaders, influencers, or network hubs** to **cascade positive behavior change**.
 
-2. Consistency Across Political Identities
+---
 
-Vaccine uptake remained consistent across Conservatives, Liberals, and Moderates.
 
-This contradicts common assumptions that political ideology strongly biases vaccination behavior.
+## 🔍 Hidden & Unexpected Insights
 
-Strategy: Craft non-partisan, universally relatable messages to bridge ideological divides.
+---
 
-3. Network Centrality Influences Behavior
+### 1. **Trust in Science Was Not a Strong Predictor**
 
-Participants with higher degree centrality (more connected in their social network) were more likely to get vaccinated.
+- Although vaccinated participants had **slightly higher trust in science**, this factor was **not statistically significant** in the logistic regression model.
 
-Strategy: Target influential individuals or community hubs to amplify behavioral change through peer influence.
+**🎯 Surprise:**  
+Belief alone didn’t drive behavior — **how the message was framed** mattered more than baseline attitudes.
 
-🧠 Hidden & Unexpected Insights
-1. Trust in Science Was Not a Strong Predictor
+---
 
-Although those who vaccinated showed slightly higher trust, trust scores alone did not significantly predict vaccine uptake in the regression model.
+### 2. **Even Small Communities Displayed Clustering Effects**
 
-Surprise: Belief in science didn’t guarantee action — messaging style mattered more than attitudes alone.
+- The histogram of vaccine uptake by community revealed **distinct clustering**, even though ad exposure was uniform across the population.
 
-2. Even Small Communities Displayed Clustering Effects
+**🎯 Surprise:**  
+Behavior adoption isn’t purely random — **social environment and peer influence** shape outcomes significantly.
 
-The distribution of vaccine uptake by community showed noticeable variation, even in a randomized simulation.
+---
 
-Surprise: Behavior adoption isn’t fully random — local social dynamics matter even when exposure is equal.
+### 3. **Minimal Difference Between ITT and TOT**
 
-3. Minimal Difference Between ITT and TOT
+- ITT (assigned group) and TOT (actually exposed) vaccine rates were **nearly identical**.
 
-The Intention-to-Treat (ITT) and Treatment-on-the-Treated (TOT) estimates were nearly identical.
+**🎯 Surprise:**  
+Indicates **high ad delivery and recall rates**, suggesting strong **engagement** and **intervention effectiveness** — a rare outcome in real-world campaigns.
 
-Surprise: Most people who were assigned ads actually saw them, indicating high engagement and low dropout, a great sign for real-world intervention success.
+---
 
-📣 Summary of What Truly Worked
-   Key Lever	                 Impact	                          Why It Matters
-Emotional Messaging	  ↑ Uptake, ↑ Positive Attitude	         Affects both behavior and perception
-Non-Partisan Design	    Equal results across ideologies	     Avoids resistance and maximizes reach
-Network Influence	    More connections → more uptake	    Highlights importance of peer-based strategies
+## 📣 Summary of What Truly Worked
 
-Final Takeaway:
-The campaign simulation suggests that how a message is delivered matters more than who receives it. Emotionally resonant content cuts through individual differences — even hesitancy and political views — and social structure plays a quiet but powerful role in shaping behavioral outcomes.
+| **Key Lever**             | **Impact**                          | **Why It Matters**                                     |
+|---------------------------|-------------------------------------|--------------------------------------------------------|
+| Emotional Messaging       | ↑ Uptake, ↑ Positive Attitude       | Affects both **behavior** and **belief systems**       |
+| Non-Partisan Design       | Equal results across ideologies     | Avoids resistance and **maximizes reach**              |
+| Network Influence         | More connections → more uptake      | Shows power of **peer-based strategy** and clustering  |
+
+---
+
+## 🧩 Final Takeaway
+
+> **The delivery of a message mattered more than who received it.**
+
+Emotionally resonant content cut through individual differences — including **vaccine hesitancy**, **political ideology**, and **trust in science**.  
+Meanwhile, **social structure quietly amplified** these effects — meaning future public health efforts must not only be evidence-based, but also **emotionally engaging** and **network-aware**.
+
 
 
 
